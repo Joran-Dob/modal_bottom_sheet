@@ -27,8 +27,7 @@ void main() {
 
       test('should not reload', () async {
         expect(
-          const NeverDraggableSheetPhysics()
-              .shouldReload(const NeverDraggableSheetPhysics()),
+          const NeverDraggableSheetPhysics().shouldReload(const NeverDraggableSheetPhysics()),
           isFalse,
         );
       });
@@ -49,8 +48,7 @@ void main() {
         await tester.pumpAndSettle();
         expect(tester.getRect(find.byType(Container)), kScreenRect);
         await tester.drag(find.byType(Container), const Offset(0, 100));
-        expect(tester.getRect(find.byType(Container)),
-            kScreenRect.translate(0, 100));
+        expect(tester.getRect(find.byType(Container)), kScreenRect.translate(0, 100));
       });
     });
     group('BouncingSheetPhysics', () {
@@ -82,6 +80,7 @@ void main() {
           pixels: -20.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
         final ScrollMetrics moreOverscrolledPosition = FixedScrollMetrics(
@@ -90,13 +89,14 @@ void main() {
           pixels: -40.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
-        final double lessOverscrollApplied = physicsUnderTest
-            .applyPhysicsToUserOffset(lessOverscrolledPosition, 10.0);
+        final double lessOverscrollApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(lessOverscrolledPosition, 10.0);
 
-        final double moreOverscrollApplied = physicsUnderTest
-            .applyPhysicsToUserOffset(moreOverscrolledPosition, 10.0);
+        final double moreOverscrollApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(moreOverscrolledPosition, 10.0);
 
         expect(lessOverscrollApplied, greaterThan(0.1));
         expect(lessOverscrollApplied, lessThan(20.0));
@@ -118,10 +118,11 @@ void main() {
           pixels: -20.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
-        final double easingApplied = physicsUnderTest.applyPhysicsToUserOffset(
-            overscrolledPosition, -10.0);
+        final double easingApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(overscrolledPosition, -10.0);
 
         expect(easingApplied, lessThan(-0.1));
         expect(easingApplied, greaterThan(-10.0));
@@ -134,6 +135,7 @@ void main() {
           pixels: 300.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
         expect(
@@ -153,12 +155,13 @@ void main() {
           pixels: -20.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
-        final double easingApplied = physicsUnderTest.applyPhysicsToUserOffset(
-            overscrolledPosition, -10.0);
-        final double tensioningApplied = physicsUnderTest
-            .applyPhysicsToUserOffset(overscrolledPosition, 10.0);
+        final double easingApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(overscrolledPosition, -10.0);
+        final double tensioningApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(overscrolledPosition, 10.0);
 
         expect(easingApplied.abs(), greaterThan(tensioningApplied.abs()));
       });
@@ -170,6 +173,7 @@ void main() {
           pixels: -20.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
         final ScrollMetrics bigListOverscrolledPosition = FixedScrollMetrics(
@@ -178,13 +182,14 @@ void main() {
           pixels: -20.0,
           viewportDimension: 100.0,
           axisDirection: AxisDirection.down,
+          devicePixelRatio: 1.0,
         );
 
-        final double smallListOverscrollApplied = physicsUnderTest
-            .applyPhysicsToUserOffset(smallListOverscrolledPosition, 10.0);
+        final double smallListOverscrollApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(smallListOverscrolledPosition, 10.0);
 
-        final double bigListOverscrollApplied = physicsUnderTest
-            .applyPhysicsToUserOffset(bigListOverscrolledPosition, 10.0);
+        final double bigListOverscrollApplied =
+            physicsUnderTest.applyPhysicsToUserOffset(bigListOverscrolledPosition, 10.0);
 
         expect(smallListOverscrollApplied, equals(bigListOverscrollApplied));
 
@@ -202,6 +207,7 @@ void main() {
             pixels: 10.0,
             viewportDimension: 100.0,
             axisDirection: AxisDirection.down,
+            devicePixelRatio: 1.0,
           );
           expect(
             () => physicsUnderTest.applyBoundaryConditions(scrollMetrics, 10.0),
@@ -220,6 +226,7 @@ void main() {
               pixels: 120.0,
               viewportDimension: 100.0,
               axisDirection: AxisDirection.down,
+              devicePixelRatio: 1.0,
             );
             expect(
               physicsUnderTest.applyBoundaryConditions(scrollMetrics, 121.0),
@@ -240,6 +247,7 @@ void main() {
               pixels: -10.0,
               viewportDimension: 100.0,
               axisDirection: AxisDirection.down,
+              devicePixelRatio: 1.0,
             );
             expect(
               physicsUnderTest.applyBoundaryConditions(scrollMetrics, -11.0),
@@ -261,6 +269,7 @@ void main() {
             pixels: 120.0,
             viewportDimension: 100.0,
             axisDirection: AxisDirection.down,
+            devicePixelRatio: 1.0,
           );
           expect(
             physicsUnderTest.applyBoundaryConditions(scrollMetrics, 121.0),
@@ -278,6 +287,7 @@ void main() {
             pixels: -10.0,
             viewportDimension: 100.0,
             axisDirection: AxisDirection.down,
+            devicePixelRatio: 1.0,
           );
           expect(
             physicsUnderTest.applyBoundaryConditions(scrollMetrics, -11.0),
@@ -306,6 +316,7 @@ void main() {
             pixels: 120.0,
             viewportDimension: 100.0,
             axisDirection: AxisDirection.down,
+            devicePixelRatio: 1.0,
           );
           expect(
             physicsUnderTest.applyBoundaryConditions(scrollMetrics, 201.0),
@@ -323,6 +334,7 @@ void main() {
             pixels: -10.0,
             viewportDimension: 100.0,
             axisDirection: AxisDirection.down,
+            devicePixelRatio: 1.0,
           );
           expect(
             physicsUnderTest.applyBoundaryConditions(scrollMetrics, -11.0),
